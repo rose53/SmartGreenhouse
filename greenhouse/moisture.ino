@@ -13,13 +13,13 @@ const char *description[] = { "saturated",
  */
 const char* getDescription(int moisture) {
     const char* retVal = NULL;
-    if (moisture <= 9) {
+    if (moisture <= SATURATED) {
         retVal = description[0];
-    } else if (moisture > 9 && moisture <= 19){
+    } else if (moisture > SATURATED && moisture <= ADEQUATELY_WET){
         retVal = description[1];
-    } else if (moisture > 19 && moisture <= 59){
+    } else if (moisture > ADEQUATELY_WET && moisture <= IRRIGATION_ADVICE){
         retVal = description[2];
-    } else if (moisture > 59 && moisture <= 99){
+    } else if (moisture > IRRIGATION_ADVICE && moisture <= IRRIGATION){
         retVal = description[3];
     } else {
         retVal = description[4];
@@ -60,10 +60,10 @@ int getMoisture(int sensor) {
     return value;
 }
 
-int getMoistureSesnor1() {
+int getMoistureSensor1() {
     return getMoisture(A0);
 }
 
-int getMoistureSesnor2() {
+int getMoistureSensor2() {
     return getMoisture(A1);
 }
